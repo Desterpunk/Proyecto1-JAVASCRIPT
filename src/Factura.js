@@ -47,8 +47,8 @@ class Factura{
         });
         console.log(precioTotalElectrodomesticos);
 
-        return "Total Electrodomesticos: " +precioTotalElectrodomesticos+
-            "\n Total Neveras: " + precioTotalNeveras+
-             "\n Total Televisores: " + precioTotalTelevisores;
+        return " Precio Total Electrodomesticos: " +precioTotalElectrodomesticos+
+            "\n Precio Total Neveras: " + precioTotalNeveras+
+             "\n Precio Total Televisores: " + precioTotalTelevisores;
     }
 }

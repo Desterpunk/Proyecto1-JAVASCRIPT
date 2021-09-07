@@ -77,7 +77,7 @@ botonInventario.addEventListener('click', () => {
             } else {
                 tdtBool = false;
             }
-            let televisores = new Televisores(opcionConsumo,opcionProcedencia,inputTamano,tdtBool);
+            let televisores = new Televisores(opcionConsumo,opcionProcedencia,inputTamano.value,tdtBool);
             inventario.llenarInventario(televisores,"televisores");
             break;
         default:
@@ -107,7 +107,7 @@ botonFacturar.addEventListener('click', () => {
             } else {
                 tdtBool = false;
             }
-            let televisores = new Televisores(opcionConsumo,opcionProcedencia,inputTamano,tdtBool);
+            let televisores = new Televisores(opcionConsumo,opcionProcedencia,inputTamano.value,tdtBool);
             factura.llenarFactura(televisores,"televisores",inventario);
             inventario.quitarInventario(televisores,"televisores");
             break;
