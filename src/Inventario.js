@@ -23,17 +23,17 @@ class Inventario{
     quitarInventario(objeto,producto){
         switch (producto) {
             case "electrodomesticos":
-                this.arrayOpcion1.pop(objeto);
+                this.arrayOpcion1.pop();
                 break;
             case "neveras":
-                this.arrayOpcion2.pop(objeto);
+                this.arrayOpcion2.pop();
                 break;
             case "televisores":
-                this.arrayOpcion3.pop(objeto);
+                this.arrayOpcion3.pop();
                 break;
             default:
                 break;
         }
     }
-    
+
 }

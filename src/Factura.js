@@ -9,7 +9,6 @@ class Factura{
             case "electrodomesticos":
                 if(inventario.arrayOpcion1.length > 0){
                     this.arrayOpcion1.push(objeto);
-                    console.log("funciona");
                 }
                 break;
             case "neveras":

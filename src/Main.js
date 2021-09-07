@@ -7,6 +7,8 @@ let info1 = document.getElementById('info1');
 let info2 = document.getElementById('info2'); 
 let info3 = document.getElementById('info3'); 
 
+let capacidadNevera = document.getElementById('capacidadNevera');
+
 let botonInventario = document.querySelector('button');
 let botonFacturar = document.getElementById('botonResultados');
 let botonComprar = document.getElementById('botonComprar');
@@ -14,11 +16,14 @@ let botonComprar = document.getElementById('botonComprar');
 let resultadosInventario = document.getElementById('inventario');
 let resultadosFactura = document.getElementById('factura');
 
+let inputCapacidad = document.getElementById('inputCapacidad');
 
 
 let objeto;
 
 let opcionProducto = "default";
+let opcionConsumo = "default";
+let opcionProcedencia = "default";
 
 let inventario = new Inventario();
 let factura = new Factura();
@@ -26,11 +31,17 @@ let factura = new Factura();
 producto.addEventListener('change', () => {
     opcionProducto = producto.options[producto.selectedIndex].value;
     info1.innerText=producto.options[producto.selectedIndex].text;
+    if(producto.options[producto.selectedIndex].value == "opcion2"){
+        capacidadNevera.style.display = 'block';
+    } else{
+        capacidadNevera.style.display = 'none';
+    }
 });
 
 consumo.addEventListener('change', () => {
     opcionConsumo = consumo.options[consumo.selectedIndex].value;
     info2.innerText=consumo.options[consumo.selectedIndex].text;
+
 });
 
 procedencia.addEventListener('change', () => {
@@ -41,10 +52,12 @@ procedencia.addEventListener('change', () => {
 botonInventario.addEventListener('click', () => {
     switch (opcionProducto){
         case "opcion1":
-            inventario.llenarInventario(objeto,"electrodomesticos");
+            let electrodomesticos = new Electrodomesticos(opcionConsumo,opcionProcedencia);
+            inventario.llenarInventario(electrodomesticos,"electrodomesticos");
             break;
         case "opcion2":
-            inventario.llenarInventario(objeto,"neveras");
+            let neveras = new Neveras(opcionConsumo,opcionProcedencia,inputCapacidad.value);
+            inventario.llenarInventario(neveras,"neveras");
             break;
         case "opcion3":
             inventario.llenarInventario(objeto,"televisores");
@@ -62,12 +75,14 @@ botonInventario.addEventListener('click', () => {
 botonFacturar.addEventListener('click', () => {
     switch (opcionProducto) {
         case "opcion1": 
-            factura.llenarFactura(objeto,"electrodomesticos",inventario);
-            inventario.quitarInventario(objeto,"electrodomesticos");
+            let electrodomesticos = new Electrodomesticos(opcionConsumo,opcionProcedencia);
+            factura.llenarFactura(electrodomesticos,"electrodomesticos",inventario);
+            inventario.quitarInventario(electrodomesticos,"electrodomesticos");
             break;
         case "opcion2":
-            factura.llenarFactura(objeto,"neveras",inventario);
-            inventario.quitarInventario(objeto,"neveras");
+            let neveras = new Neveras(opcionConsumo,opcionProcedencia,inputCapacidad.value);
+            factura.llenarFactura(neveras,"neveras",inventario);
+            inventario.quitarInventario(neveras,"neveras");
             break;
         case "opcion3":
             factura.llenarFactura(objeto,"televisores",inventario);
