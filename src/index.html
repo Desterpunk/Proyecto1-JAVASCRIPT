@@ -7,9 +7,57 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="contenedor" style="text-align:center; flex: content;" >
+        <h3>Seleccione su producto</h3>
+        <select id="producto">
+            <option disabled hidden selected>Select</option>
+            <option value="opcion1">Electrodomesticos</option>
+            <option value="opcion2">Neveras</option>
+            <option value="opcion3">Televisores</option>
+        </select>
+    </div>
+    <div class="contenedor" style="text-align:center; flex: content;" >
+        <h3>Seleccione su consumo</h3>
+        <select id="consumo">
+            <option disabled hidden selected>Select</option>
+            <option value="opcion1">A</option>
+            <option value="opcion2">B</option>
+            <option value="opcion3">C</option>
+        </select>
+    </div>
+    <div class="contenedor" style="text-align:center; flex: content;" >
+        <h3>Seleccione su procedencia</h3>
+        <select id="procedencia">
+            <option disabled hidden selected>Select</option>
+            <option value="opcion1">Nacional</option>
+            <option value="opcion2">Internacional</option>
+        </select>
+    </div>
+    <div style="text-align: center; padding-top: 20px;">
+        <h2 id="info1" ></h2>
+        <h2 id="info2" ></h2>
+        <h2 id="info3" ></h2>
+        <button>Inventario</button>
+        <button id="botonResultados">Factura</button>
+        <button id="botonComprar">Comprar</button>
+
+    </div>
+
+    <div style="padding-bottom: 80px; margin-bottom: 80px; grid-row: auto;">
+        <h1>Inventario</h1>
+        <p  id="inventario"></p>
+    </div>
+    <div>
+        <h1>Factura</h1>
+        <p id="factura"></p>
+    </div>
+
+
     <script src="Electrodomesticos.js"></script>
     <script src="Neveras.js"></script>
     <script src="Televisores.js"></script>
+    <script src="Inventario.js"></script>
+    //<script src="factura.js"></script>
     <script src="Main.js"></script>
 </body>
 </html>
