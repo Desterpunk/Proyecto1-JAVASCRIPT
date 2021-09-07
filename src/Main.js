@@ -62,33 +62,38 @@ botonInventario.addEventListener('click', () => {
 botonFacturar.addEventListener('click', () => {
     switch (opcionProducto) {
         case "opcion1": 
-            inventario.quitarInventario(objeto,"electrodomesticos")
-            factura.llenarFactura(objeto,"electrodomesticos",inventario)
+            factura.llenarFactura(objeto,"electrodomesticos",inventario);
+            inventario.quitarInventario(objeto,"electrodomesticos");
             break;
         case "opcion2":
-            inventario.quitarInventario(objeto,"neveras")
-            factura.llenarFactura(objeto,"neveras",inventario)
+            factura.llenarFactura(objeto,"neveras",inventario);
+            inventario.quitarInventario(objeto,"neveras");
             break;
         case "opcion3":
-            inventario.quitarInventario(objeto,"televisores")
-            factura.llenarFactura(objeto,"televisores",inventario)
+            factura.llenarFactura(objeto,"televisores",inventario);
+            inventario.quitarInventario(objeto,"televisores");
             break;
         default:
             console.log("Sin opcion");
             break;
     }
-    
-    resultadosInventario.innerText = "Inventario Electrodomesticos " + inventario.arrayOpcion1.length + "\n" +
-    "Inventario Neveras " + inventario.arrayOpcion2.length + "\n" +
-    "Inventario Televisores " + inventario.arrayOpcion3.length;
-
     resultadosFactura.innerText = "Inventario Electrodomesticos " + factura.arrayOpcion1.length + "\n" +
     "Inventario Neveras " + factura.arrayOpcion2.length + "\n" +
     "Inventario Televisores " + factura.arrayOpcion3.length;
 
+    resultadosInventario.innerText = "Inventario Electrodomesticos " + inventario.arrayOpcion1.length + "\n" +
+    "Inventario Neveras " + inventario.arrayOpcion2.length + "\n" +
+    "Inventario Televisores " + inventario.arrayOpcion3.length;
+
+
 });
 
 botonComprar.addEventListener('click', () => {
+    factura.limpiarFactura();
+
+    resultadosFactura.innerText = "Inventario Electrodomesticos " + factura.arrayOpcion1.length + "\n" +
+    "Inventario Neveras " + factura.arrayOpcion2.length + "\n" +
+    "Inventario Televisores " + factura.arrayOpcion3.length;
 });
 
 

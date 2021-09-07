@@ -9,19 +9,17 @@ class Factura{
             case "electrodomesticos":
                 if(inventario.arrayOpcion1.length > 0){
                     this.arrayOpcion1.push(objeto);
-                    break;
+                    console.log("funciona");
                 }
                 break;
             case "neveras":
                 if(inventario.arrayOpcion2.length > 0){
                     this.arrayOpcion2.push(objeto);
-                    break;
                 }
                 break;
             case "televisores":
                 if(inventario.arrayOpcion3.length > 0){
                     this.arrayOpcion3.push(objeto);
-                    break;
                 }
                 break;
             default:
