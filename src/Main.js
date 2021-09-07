@@ -8,6 +8,9 @@ let info2 = document.getElementById('info2');
 let info3 = document.getElementById('info3'); 
 
 let capacidadNevera = document.getElementById('capacidadNevera');
+let extrasTelevisor = document.getElementById('extrasTelevisor');
+var tdtTelevisor = document.getElementsByName('tdtTelevisor');
+let tdtBool;
 
 let botonInventario = document.querySelector('button');
 let botonFacturar = document.getElementById('botonResultados');
@@ -17,6 +20,9 @@ let resultadosInventario = document.getElementById('inventario');
 let resultadosFactura = document.getElementById('factura');
 
 let inputCapacidad = document.getElementById('inputCapacidad');
+let inputTamano = document.getElementById('inputTamano');
+
+let precioTotal = document.getElementById('precioTotal');
 
 
 let objeto;
@@ -31,11 +37,17 @@ let factura = new Factura();
 producto.addEventListener('change', () => {
     opcionProducto = producto.options[producto.selectedIndex].value;
     info1.innerText=producto.options[producto.selectedIndex].text;
-    if(producto.options[producto.selectedIndex].value == "opcion2"){
-        capacidadNevera.style.display = 'block';
-    } else{
+    if(producto.options[producto.selectedIndex].value == "opcion1"){
         capacidadNevera.style.display = 'none';
-    }
+        extrasTelevisor.style.display = 'none';
+    } else if(producto.options[producto.selectedIndex].value == "opcion2"){
+        capacidadNevera.style.display = 'block';
+        extrasTelevisor.style.display = 'none';
+    } else if(producto.options[producto.selectedIndex].value == "opcion3"){
+        extrasTelevisor.style.display = 'block';
+        capacidadNevera.style.display = 'none';
+    } 
+
 });
 
 consumo.addEventListener('change', () => {
@@ -45,7 +57,7 @@ consumo.addEventListener('change', () => {
 });
 
 procedencia.addEventListener('change', () => {
-    opcionProcedencia = procedencia.options[consumo.selectedIndex].value;
+    opcionProcedencia = procedencia.options[procedencia.selectedIndex].value;
     info3.innerText=procedencia.options[procedencia.selectedIndex].text;
 });
 
@@ -60,13 +72,18 @@ botonInventario.addEventListener('click', () => {
             inventario.llenarInventario(neveras,"neveras");
             break;
         case "opcion3":
-            inventario.llenarInventario(objeto,"televisores");
+            if(tdtTelevisor[0].checked){
+                tdtBool = true;
+            } else {
+                tdtBool = false;
+            }
+            let televisores = new Televisores(opcionConsumo,opcionProcedencia,inputTamano,tdtBool);
+            inventario.llenarInventario(televisores,"televisores");
             break;
         default:
             console.log("Sin opcion");
             break;
     }
-    
     resultadosInventario.innerText = "Inventario Electrodomesticos " + inventario.arrayOpcion1.length + "\n" +
     "Inventario Neveras " + inventario.arrayOpcion2.length + "\n" +
     "Inventario Televisores " + inventario.arrayOpcion3.length;
@@ -85,8 +102,14 @@ botonFacturar.addEventListener('click', () => {
             inventario.quitarInventario(neveras,"neveras");
             break;
         case "opcion3":
-            factura.llenarFactura(objeto,"televisores",inventario);
-            inventario.quitarInventario(objeto,"televisores");
+            if(tdtTelevisor[0].checked){
+                tdtBool = true;
+            } else {
+                tdtBool = false;
+            }
+            let televisores = new Televisores(opcionConsumo,opcionProcedencia,inputTamano,tdtBool);
+            factura.llenarFactura(televisores,"televisores",inventario);
+            inventario.quitarInventario(televisores,"televisores");
             break;
         default:
             console.log("Sin opcion");
@@ -99,7 +122,8 @@ botonFacturar.addEventListener('click', () => {
     resultadosInventario.innerText = "Inventario Electrodomesticos " + inventario.arrayOpcion1.length + "\n" +
     "Inventario Neveras " + inventario.arrayOpcion2.length + "\n" +
     "Inventario Televisores " + inventario.arrayOpcion3.length;
-
+    
+    precioTotal.innerText = factura.calcularTotal();
 
 });
 
@@ -109,6 +133,8 @@ botonComprar.addEventListener('click', () => {
     resultadosFactura.innerText = "Inventario Electrodomesticos " + factura.arrayOpcion1.length + "\n" +
     "Inventario Neveras " + factura.arrayOpcion2.length + "\n" +
     "Inventario Televisores " + factura.arrayOpcion3.length;
+
+    precioTotal.innerText = factura.calcularTotal();
 });
 
 
